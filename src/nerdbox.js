@@ -1,7 +1,8 @@
 /* Nerdbox
  * v0.1.0
  *
- * Nerdbox is a fully-tested, simple lightbox designed for programmers. 
+ * Nerdbox is a fully-tested, simple lightbox designed for programmers.
+ *
  */
 
 Nerdbox = function(selector, delegate, options) {
