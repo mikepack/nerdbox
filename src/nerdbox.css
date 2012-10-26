@@ -1,22 +1,22 @@
 #nerdbox {
   position: fixed;
-  top: 0;
   left: 0;
+  top: 0;
   height: 100%;
   width: 100%;
-  z-index: 99999;
   text-align: center;
   white-space: nowrap;
+  z-index: 99999;
 }
 
 /* This is to force inline vertical alignment of .wrapper */
 #nerdbox:before { 
   content: ' ';
-  height: 100%;
-  width: 1px;
-  position: relative;
   display: inline-block;
+  height: 100%;
+  position: relative;
   vertical-align: middle;
+  width: 1px;
 }
 
 #nerdbox .overlay {
