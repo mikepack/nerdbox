@@ -1,4 +1,4 @@
-# Nerdbox
+# Nerdbox [![Build Status](https://secure.travis-ci.org/mikepack/nerdbox.png)](http://travis-ci.org/mikepack/nerdbox)
 
 ## The programmers lightbox.
 
