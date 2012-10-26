@@ -1,0 +1,195 @@
+#nerdbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99999;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* This is to force inline vertical alignment of .wrapper */
+#nerdbox:before { 
+  content: ' ';
+  height: 100%;
+  width: 1px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#nerdbox .overlay {
+  background-color: #000;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* This element is positioned inline.
+   inline-block can be treated as an inline element, so we can use text-align on the
+   parent and vertical-align on itself ( with #nerdbox:before as a 'sibling' )
+*/
+#nerdbox .wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  margin-left: -1px;
+  border: 3px solid rgba(0,0,0,0);
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 0 18px rgba(0,0,0,0.4);
+  box-shadow: 0 0 18px rgba(0,0,0,0.4); 
+}
+
+#nerdbox .wrapper .close {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: #DDD;
+  font-family: sans-serif;
+  font-size: 20px;
+  height: 40px;
+  text-decoration: none;
+}
+
+#nerdbox .inner {
+  overflow: auto;
+}
+
+#nerdbox .inner .content {
+  background: #fff;
+
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+}
+
+#nerdbox .inner .content > img {
+  display: block;
+}
+
+/*
+---------------------
+    Loader Styles
+---------------------
+*/
+
+#loader {
+  width: 170px;
+  height: 35px;
+  padding: 10px;
+}
+
+#loader .circle {
+  background-color: #FFFFFF;
+  float: left;
+  height: 32px;
+  margin-left: 17px;
+  width: 32px;
+  -webkit-animation-name: fade_circle;
+  -webkit-border-radius: 21px;
+  -webkit-animation-duration: 1.65s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: linear;
+  -moz-animation-name: fade_circle;
+  -moz-border-radius: 21px;
+  -moz-animation-duration: 1.65s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction: linear;
+  opacity: 0.3;
+  -o-animation-name: fade_circle;
+  border-radius: 21px;
+  -o-animation-duration: 1.65s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-direction: linear;
+  -ms-animation-name: fade_circle;
+  -ms-animation-duration: 1.65s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-direction: linear;
+  opacity: 0.3
+}
+
+#loader .circle.one {
+  -webkit-animation-delay: 0.33s;
+  -moz-animation-delay: 0.33s;
+  -o-animation-delay: 0.33s;
+  -ms-animation-delay: 0.33s;
+}
+
+#loader .circle.two {
+  -webkit-animation-delay: 0.66s;
+  -moz-animation-delay: 0.66s;
+  -o-animation-delay: 0.66s;
+  -ms-animation-delay: 0.66s;
+}
+
+#loader .circle.three {
+  -webkit-animation-delay: 0.99s;
+  -moz-animation-delay: 0.99s;
+  -o-animation-delay: 0.99s;
+  -ms-animation-delay: 0.99s;
+}
+
+@-webkit-keyframes fade_circle {
+  0%{
+    opacity: 0.3;
+  }
+  50%{
+    opacity: 1;
+    background: #777;
+  }
+  100%{
+    opacity: 0.3;
+  }
+}
+
+@-moz-keyframes fade_circle {
+  0%{
+    opacity: 0.3;
+  }
+  50%{
+    opacity: 1;
+    background: #777;
+  }
+  100%{
+    opacity: 0.3;
+  }
+}
+
+@-o-keyframes fade_circle {
+  0%{
+    opacity: 0.3;
+  }
+  50%{
+    opacity: 1;
+    background: #777;
+  }
+  100%{
+    opacity: 0.3;
+  }
+}
+
+@-ms-keyframes fade_circle {
+  0%{
+    opacity: 0.3;
+  }
+  50%{
+    opacity: 1;
+    background: #777;
+  }
+  100%{
+    opacity: 0.3;
+  }
+}
