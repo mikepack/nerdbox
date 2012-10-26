@@ -76,6 +76,7 @@
   border-radius:4px;
 }
 
+/* this helps with position and spacing when loading a single image into content */
 #nerdbox .inner .content > img {
   display: block;
 }
