@@ -24,6 +24,8 @@ Nerdbox is a fully-tested, simple lightbox designed for programmers.
 
 Nerdbox handles images, element IDs, and Ajax by default. The href of your link determines the type to be loaded.
 
+For a demonstration of how to use Nerdbox, check out [demo.html](https://github.com/mikepack/nerdbox/blob/master/demo.html).
+
 ### Defining Links
 
 The easiest way to use Nerdbox is to define some links with a class of `nerdbox` on the page:
