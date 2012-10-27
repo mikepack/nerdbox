@@ -70,7 +70,7 @@
 }
 
 #nerdbox .inner .content {
-  background: #fff;
+  background: #FFF;
 
   -webkit-border-radius:4px;
   -moz-border-radius:4px;
@@ -95,7 +95,7 @@
 }
 
 #loader .circle {
-  background-color: #FFFFFF;
+  background-color: #FFF;
   float: left;
   height: 32px;
   margin-left: 17px;
