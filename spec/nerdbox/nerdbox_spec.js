@@ -51,8 +51,8 @@ describe('Nerdbox', function() {
 
   describe('initializing Nerdbox', function() {
     beforeEach(function() {
-      Nerdbox.options.opacity = 0.2;
-      Nerdbox.options.overlay = true;
+      Nerdbox.options.fadeDuration = 999;
+      Nerdbox.options.nerdboxSelector = '#custombox';
     });
 
     it('has a defaults selector', function() {
@@ -72,35 +72,64 @@ describe('Nerdbox', function() {
 
     it('sets default options', function() {
       var nerdbox = new Nerdbox();
-      expect(nerdbox.options.opacity).toEqual(0.2);
+      expect(nerdbox.options.fadeDuration).toEqual(999);
     });
 
     it('overrides default options for the instance', function() {
-      nerdbox = new Nerdbox('.mynerdbox', 'body', {
-        opacity: 1.0,
-        overlay: false
+      var nerdbox = new Nerdbox('.mynerdbox', 'body', {
+        fadeDuration: 888,
+        nerdboxSelector: '#differentbox'
       });
 
-      expect(nerdbox.options.opacity).toEqual(1.0);
-      expect(nerdbox.options.overlay).toEqual(false);
+      expect(nerdbox.options.fadeDuration).toEqual(888);
+      expect(nerdbox.options.nerdboxSelector).toEqual('#differentbox');
     });
 
     describe('options out of order', function() {
-      var options = { opacity: 1.0 };
+      var options = { fadeDuration: 999 };
 
       it('allows a selector and options', function() {
         var nerdbox = new Nerdbox('.mynerdbox', options);
         expect(nerdbox.selector).toEqual('.mynerdbox');
         expect(nerdbox.delegate).toEqual(undefined);
-        expect(nerdbox.options.opacity).toEqual(1.0);
+        expect(nerdbox.options.fadeDuration).toEqual(999);
       });
 
       it('allows just options', function() {
         var nerdbox = new Nerdbox(options);
         expect(nerdbox.selector).toEqual('.nerdbox');
         expect(nerdbox.delegate).toEqual(undefined);
-        expect(nerdbox.options.opacity).toEqual(1.0);
+        expect(nerdbox.options.fadeDuration).toEqual(999);
       });
+    });
+  });
+
+  describe('using Nerdbox as a jQuery plugin', function() {
+    it('returns an instance of Nerdbox', function() {
+      expect($('.nerdbox').nerdbox().__proto__).toBe(Nerdbox.prototype);
+    });
+
+    it('instantiates Nerdbox with the provided selector', function() {
+      var nerdbox = $('.custombox').nerdbox();
+      expect(nerdbox.selector).toBe('.custombox');
+    });
+
+    it('accepts a delegator as the first argument', function() {
+      var nerdbox = $('.custombox').nerdbox('body');
+      expect(nerdbox.delegate).toBe('body');
+    });
+
+    it('accepts an options object as the first argument', function() {
+      var nerdbox = $('.custombox').nerdbox({fadeDuration: 999});
+      expect(nerdbox.delegate).toBe(undefined);
+      expect(nerdbox.options.fadeDuration).toBe(999);
+    });
+
+    it('accepts both a delegator and options', function() {
+      var nerdbox = $('.custombox').nerdbox('body', {fadeDuration: 999});
+      expect(nerdbox.selector).toBe('.custombox');
+      expect(nerdbox.delegate).toBe('body');
+      expect(nerdbox.options.fadeDuration).toBe(999);
     });
   });
 
@@ -122,7 +151,7 @@ describe('Nerdbox', function() {
     });
   });
 
-  describe('clicking nerdbox links', function() {
+  describe('clicking Nerdbox links', function() {
     afterEach(function() {
       $('.nerdbox').remove();
     });
@@ -262,7 +291,7 @@ describe('Nerdbox', function() {
         $('.nerdbox').click();
         Nerdbox.close();
 
-        expect($(nerdbox.options.nerdboxSelector)).not.toBeVisible();
+        expect($(Nerdbox.options.nerdboxSelector)).not.toBeVisible();
       });
 
       it('triggers the nerdbox.closed event', function() {
@@ -289,7 +318,7 @@ describe('Nerdbox', function() {
 
       it('opens the lightbox', function() {
         Nerdbox.open('');
-        expect($(nerdbox.options.nerdboxSelector)).toBeVisible();
+        expect($(Nerdbox.options.nerdboxSelector)).toBeVisible();
       });
 
       describe('loading element content', function() {

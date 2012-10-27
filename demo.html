@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Nerdbox - The Programmers Lightbox</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>  
+    <script src="src/nerdbox.js"></script>
+    <link rel="stylesheet" media="screen" href="src/nerdbox.css">
+
+    <script>
+      $(function() {
+        new Nerdbox();
+      });
+    </script>
+  </head>
+  <body>
+    You should see a lightbox appear one this page by clicking <a href="#lightboxcontent" class="nerdbox">here</a>.
+    <div id="lightboxcontent"sytle="display: none">
+      You should see this content in a lightbox.
+    </div>
+  </body>
+</html>

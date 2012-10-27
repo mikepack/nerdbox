@@ -1,6 +1,6 @@
 # Nerdbox [![Build Status](https://secure.travis-ci.org/mikepack/nerdbox.png)](http://travis-ci.org/mikepack/nerdbox)
 
-## The programmers lightbox.
+## The Programmers Lightbox
 
 Nerdbox is a fully-tested, simple lightbox designed for programmers.
 
@@ -11,7 +11,7 @@ Nerdbox is a fully-tested, simple lightbox designed for programmers.
 - Too many lightboxes hide their internals within a closure. If you need to accomplish something it wasn't designed to do, you end up with really strange, buggy and dependent code. This makes upgrading hard and is generally ugly.
 - Most lightbox libraries are strictly jQuery plugins, degrading the API. jQuery's a secondary concern in Nerdbox.
 - Most neglect testing. Nerdbox is test driven.
-- Most use images for the close link and content loading. Nerdbox is purely CSS.
+- Most use images for the close link and content loading. Nerdbox does not rely on any images.
 - Most center the lightbox using JavaScript. Nerdbox uses CSS.
 - Most size the lightbox using JavaScript. Nerdbox uses CSS.
 
@@ -22,7 +22,7 @@ Nerdbox is a fully-tested, simple lightbox designed for programmers.
 
 ## Usage
 
-Nerdbox handles images, element IDs, and ajax by default. The href of your link determines the type to be loaded.
+Nerdbox handles images, element IDs, and Ajax by default. The href of your link determines the type to be loaded.
 
 ### Defining Links
 
@@ -288,12 +288,22 @@ Nerdbox uses jQuery internally. You can use it as a jQuery plugin if you prefer:
 $('.nerdbox').nerdbox();
 ```
 
-**Note:** the above will not use delegation.
-
-You can pass options to the jQuery plugin:
+You can use a delegator as the first parameter:
 
 ```javascript
-$('.nerdbox').nerdbox({opacity: 0.5});
+$('.nerdbox').nerdbox('body');
+```
+
+You can pass options as the second parameter:
+
+```javascript
+$('.nerdbox').nerdbox('body', {fadeDuration: 500});
+```
+
+You can leave out a delegate, and just pass options:
+
+```javascript
+$('.nerdbox').nerdbox({fadeDuration: 500});
 ```
 
 ## Running the Specs

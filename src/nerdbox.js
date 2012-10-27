@@ -13,6 +13,10 @@ Nerdbox = function(selector, delegate, options) {
   }
 }
 
+jQuery.fn.nerdbox = function(delegate, options) {
+  return new Nerdbox(this.selector, delegate, options);
+};
+
 Nerdbox.options = {
   fadeDuration    : 200,
   imageExts       : [ 'png', 'jpg', 'jpeg', 'gif' ],
