@@ -58,11 +58,23 @@
   position: absolute;
   top: 0;
   right: 5px;
-  color: #DDD;
-  font-family: sans-serif;
-  font-size: 20px;
-  height: 40px;
+  height: 20px;
+  width: 20px;
   text-decoration: none;
+  text-align: center;
+  z-index: 10;
+}
+
+#nerdbox .wrapper .close:before {
+  display: block;
+  content: "\00D7";
+  font-size: 20px;
+  font-weight: bold;
+  color: #DDD;
+  position: relative;
+  z-index: 10;
+  width: 20px;
+  height: 20px;
 }
 
 #nerdbox .inner {

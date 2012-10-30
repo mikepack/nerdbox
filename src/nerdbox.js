@@ -31,7 +31,7 @@ Nerdbox.options = {
     <div class="inner"> \
       <div class="content"></div> \
     </div> \
-    <a href="#" class="close">x</a> \
+    <a href="#" class="close" title="close"></a> \
   </div> \
 </div>',
   loader          : '\
