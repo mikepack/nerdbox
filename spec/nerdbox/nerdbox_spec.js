@@ -277,6 +277,27 @@ describe('Nerdbox', function() {
         expect($(nerdbox.options.nerdboxSelector)).not.toBeVisible();
       });
     });
+
+    describe('when the close link is injected into the lightbox content', function() {
+      describe('clicking the close link', function() {
+        var options;
+
+        beforeEach(function() { options = Nerdbox.options; });
+        afterEach(function() { Nerdbox.options = options; });
+
+        it('closes the lightbox', function() {
+          // Container without the close link
+          Nerdbox.options.container = '<div id="nerdbox" style="display: none;"><div class="wrapper">\
+                                       <div class="inner"><div class="content"></div></div></div></div>';
+          Nerdbox.options.closeSelector = '.custom-close';
+
+          Nerdbox.open('<a href="" class="custom-close">X</a>');
+
+          $('.custom-close').click();
+          expect($(nerdbox.options.nerdboxSelector)).not.toBeVisible();
+        });
+      });
+    });
   });
 
   describe('programatically controlling Nerdbox', function() {

@@ -100,7 +100,8 @@ Nerdbox.prototype._setup = function() {
   }
 
   // Close lightbox
-  jQuery(this._closeSelector() + ', '+ this._overlaySelector()).on('click', Nerdbox.close);
+  jQuery(this._overlaySelector()).on('click', Nerdbox.close);
+  jQuery(this.options.nerdboxSelector).on('click', this.options.closeSelector, Nerdbox.close);
 
   jQuery(document).trigger('nerdbox.initialized');
 };
