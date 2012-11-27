@@ -19,7 +19,7 @@
   width: 1px;
 }
 
-#nerdbox .overlay {
+#nerdbox .nb-overlay {
   background-color: #000;
   opacity: 0.2;
   filter: alpha(opacity=20);
@@ -34,7 +34,7 @@
    inline-block can be treated as an inline element, so we can use text-align on the
    parent and vertical-align on itself ( with #nerdbox:before as a 'sibling' )
 */
-#nerdbox .wrapper {
+#nerdbox .nb-wrapper {
   display: inline-block;
   vertical-align: middle;
   text-align: left;
@@ -54,7 +54,7 @@
   box-shadow: 0 0 18px rgba(0,0,0,0.4); 
 }
 
-#nerdbox .wrapper .close {
+#nerdbox .nb-wrapper .nb-close {
   position: absolute;
   top: 0;
   right: 5px;
@@ -65,7 +65,7 @@
   z-index: 10;
 }
 
-#nerdbox .wrapper .close:before {
+#nerdbox .nb-wrapper .nb-close:before {
   display: block;
   content: "\00D7";
   font-size: 20px;
@@ -77,11 +77,11 @@
   height: 20px;
 }
 
-#nerdbox .inner {
+#nerdbox .nb-inner {
   overflow: auto;
 }
 
-#nerdbox .inner .content {
+#nerdbox .nb-inner .nb-content {
   background: #FFF;
 
   -webkit-border-radius:4px;
@@ -90,7 +90,7 @@
 }
 
 /* this helps with position and spacing when loading a single image into content */
-#nerdbox .inner .content > img {
+#nerdbox .nb-inner .nb-content > img {
   display: block;
 }
 

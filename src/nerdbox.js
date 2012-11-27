@@ -21,17 +21,17 @@ Nerdbox.options = {
   fadeDuration    : 200,
   imageExts       : [ 'png', 'jpg', 'jpeg', 'gif' ],
   nerdboxSelector : '#nerdbox',
-  overlaySelector : '.overlay',
-  contentSelector : '.content',
-  closeSelector   : '.close',
+  overlaySelector : '.nb-overlay',
+  contentSelector : '.nb-content',
+  closeSelector   : '.nb-close',
   container       : '\
 <div id="nerdbox" style="display: none;"> \
-  <div class="overlay"></div> \
-  <div class="wrapper"> \
-    <div class="inner"> \
-      <div class="content"></div> \
+  <div class="nb-overlay"></div> \
+  <div class="nb-wrapper"> \
+    <div class="nb-inner"> \
+      <div class="nb-content"></div> \
     </div> \
-    <a href="#" class="close" title="close"></a> \
+    <a href="#" class="nb-close" title="close"></a> \
   </div> \
 </div>',
   loader          : '\
