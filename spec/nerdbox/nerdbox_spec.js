@@ -278,6 +278,24 @@ describe('Nerdbox', function() {
       });
     });
 
+    describe('pressing escape', function() {
+      it('closes the lightbox', function() {
+        $('.nerdbox').click();
+        $('body').trigger(jQuery.Event('keyup', { keyCode: 27 }));
+
+        expect($(nerdbox.options.nerdboxSelector)).not.toBeVisible();
+      });
+    });
+
+    describe('pressing a key other than escape', function() {
+      it('does not close the lightbox', function() {
+        $('.nerdbox').click();
+        $('body').trigger(jQuery.Event('keyup', { keyCode: 28 }));
+
+        expect($(nerdbox.options.nerdboxSelector)).toBeVisible();
+      });
+    });
+
     describe('when the close link is injected into the lightbox content', function() {
       describe('clicking the close link', function() {
         var options;
