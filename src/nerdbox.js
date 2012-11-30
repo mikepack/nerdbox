@@ -11,7 +11,7 @@ Nerdbox = function(selector, delegate, options) {
   } else {
     new Nerdbox(selector, delegate, options);
   }
-}
+};
 
 jQuery.fn.nerdbox = function(delegate, options) {
   return new Nerdbox(this.selector, delegate, options);
@@ -48,9 +48,7 @@ Nerdbox.open = function(contentRef) {
 };
 
 Nerdbox.close = function() {
-  jQuery(Nerdbox._currentlyOpen.options.nerdboxSelector).fadeOut(Nerdbox._currentlyOpen.options.fadeDuration, function() {
-    jQuery(document).trigger('nerdbox.closed');
-  });
+  Nerdbox._fadeOut(function() { jQuery(document).trigger('nerdbox.closed'); });
   return false;
 };
 
@@ -67,6 +65,22 @@ Nerdbox.prototype.init = function(selector, delegate, options) {
   this._setup();
 };
 
+Nerdbox._currentNerdbox = function() {
+  if( Nerdbox._currentlyOpen ) { return Nerdbox._currentlyOpen; }
+  else                         { return Nerdbox._nullBox; }
+};
+
+// If there is no current Nerdbox, we use a null object.
+Nerdbox._nullBox = { options: Nerdbox.options };
+
+Nerdbox._fadeIn = function(afterFadeIn) {
+  jQuery(Nerdbox._currentNerdbox().options.nerdboxSelector).fadeIn(Nerdbox._currentNerdbox().options.fadeDuration, afterFadeIn);
+};
+
+Nerdbox._fadeOut = function(afterFadeOut) {
+  jQuery(Nerdbox._currentNerdbox().options.nerdboxSelector).fadeOut(Nerdbox._currentNerdbox().options.fadeDuration, afterFadeOut);
+};
+
 Nerdbox.prototype._openFromLink = function(event) {
   // The target might be an element embedded in the link (eg image)
   var link = jQuery(event.target).closest(this.selector);
@@ -74,17 +88,15 @@ Nerdbox.prototype._openFromLink = function(event) {
   this._open(link.attr('href'));
 
   return false;
-}
+};
 
 Nerdbox.prototype._open = function(href) {
   jQuery(this._contentSelector()).html(this.options.loader);
-  jQuery(this.options.nerdboxSelector).fadeIn(this.options.fadeDuration, function() {
-    jQuery(document).trigger('nerdbox.opened');
-  });
-
-  this._loadContent(href);
 
   Nerdbox._currentlyOpen = this;
+  Nerdbox._fadeIn(function() { jQuery(document).trigger('nerdbox.opened'); });
+
+  this._loadContent(href);
 };
 
 Nerdbox.prototype._setup = function() {
