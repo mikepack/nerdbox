@@ -76,11 +76,8 @@
   height: 20px;
 }
 
-#nerdbox .nb-inner {
+#nerdbox .nb-content {
   overflow: auto;
-}
-
-#nerdbox .nb-inner .nb-content {
   background: #FFF;
 
   -webkit-border-radius:4px;
@@ -89,7 +86,7 @@
 }
 
 /* this helps with position and spacing when loading a single image into content */
-#nerdbox .nb-inner .nb-content > img {
+#nerdbox .nb-content > img {
   display: block;
 }
 
