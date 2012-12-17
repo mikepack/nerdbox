@@ -120,7 +120,7 @@ Nerdbox.prototype._setup = function() {
 };
 
 Nerdbox.prototype._loadContent = function(href) {
-  var imageTypesRegexp = new RegExp('\\.(' + this.options.imageExts.join('|') + ')(\\?.*)?$', 'i'),
+  var imageTypesRegexp = new RegExp('\\.(' + this.options.imageExts.join('|') + ')', 'i'),
       urlRegex         = new RegExp('^[^ ]*$');
 
   // Render a div

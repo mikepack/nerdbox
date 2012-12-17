@@ -231,6 +231,16 @@ describe('Nerdbox', function() {
 
         expect($(Nerdbox.options.contentSelector)).toHaveHtml('<img src="support/formal_languages.png" />');
       });
+
+      it('accommodates for URLs without an extension', function() {
+        $('body').append($('<a href="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://localhost/" class="nerdbox">Show Image</a>'));
+
+        // Using the domain as an "extension" is a hack. Consider adding a regex option to the configuration.
+        var nerdbox = new Nerdbox({imageExts: ['googleapis']});
+        $('.nerdbox').click();
+
+        expect($(Nerdbox.options.contentSelector)).toHaveHtml('<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://localhost/" />');
+      });
     });
 
     describe('loading ajax content', function() {

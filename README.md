@@ -333,9 +333,13 @@ Nerdbox functions properly in IE8+. The default loader uses CSS animations, whic
 
 ## Future Improvements
 
-- Prevent overflowing content in .inner to bleed out over .wrapper. This should force vertical scrolling.
 - Improve algorithm to determine Nerdbox.open with text. Currently it only supports URLS without spaces.
 - Better testing around timing of hooks.
+
+## Known Issues
+
+- Nerdbox does not overflow vertically very well. Content that extends beyond the height of the lightbox will not scroll properly.
+- Nerdbox will load in URLs with image-like extensions when you may expect it to make an Ajax request. So, http://get.pngnow.com will be recognized as an image and loaded into an image tag.
 
 ## Credits
 
