@@ -35,6 +35,7 @@
 */
 #nerdbox .nb-wrapper {
   display: inline-block;
+  overflow: hidden;
   vertical-align: middle;
   text-align: left;
   position: relative;
@@ -54,6 +55,10 @@
 }
 
 #nerdbox .nb-wrapper .nb-close {
+  background-color: #FFF;
+  -webkit-border-radius: 0 0 0 5px;
+  -moz-border-radius: 0 0 0 5px;
+  border-radius: 0 0 0 5px;
   position: absolute;
   top: 0;
   right: 5px;
@@ -61,7 +66,7 @@
   width: 20px;
   text-decoration: none;
   text-align: center;
-  z-index: 10;
+  z-index: 11;
 }
 
 #nerdbox .nb-wrapper .nb-close:before {
@@ -69,17 +74,27 @@
   content: "\00D7";
   font-size: 20px;
   font-weight: bold;
-  color: #DDD;
+  color: #AAA;
   position: relative;
   z-index: 10;
   width: 20px;
   height: 20px;
+  line-height: 20px;
+}
+
+#nerdbox .nb-shim {
+  visibility: hidden;
 }
 
 #nerdbox .nb-content {
-  overflow: auto;
   background: #FFF;
-
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 10;
   -webkit-border-radius:4px;
   -moz-border-radius:4px;
   border-radius:4px;
