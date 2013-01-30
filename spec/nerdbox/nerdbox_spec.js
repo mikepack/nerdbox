@@ -209,7 +209,9 @@ describe('Nerdbox', function() {
         var nerdbox = new Nerdbox();
         $('.nerdbox').click();
 
-        expect($(Nerdbox.options.contentSelector)).toHaveText('Nerdbox Content');
+        // [0] here refers to the first element of the ones that have been selected.
+        // Nerdbox currently has two selectors (eg .nb-shim), so just use the first one.
+        expect($($(Nerdbox.options.contentSelector)[0])).toHaveText('Nerdbox Content');
       });
 
       it('can handle fragments as a substring', function() {
@@ -218,7 +220,9 @@ describe('Nerdbox', function() {
         var nerdbox = new Nerdbox();
         $('.nerdbox').click();
 
-        expect($(Nerdbox.options.contentSelector)).toHaveText('Nerdbox Content');
+        // [0] here refers to the first element of the ones that have been selected.
+        // Nerdbox currently has two selectors (eg .nb-shim), so just use the first one.
+        expect($($(Nerdbox.options.contentSelector)[0])).toHaveText('Nerdbox Content');
       });
     });
 
@@ -376,7 +380,9 @@ describe('Nerdbox', function() {
 
           Nerdbox.open('#fragment');
 
-          expect($(Nerdbox.options.contentSelector)).toHaveText('Nerdbox Content');
+          // [0] here refers to the first element of the ones that have been selected.
+          // Nerdbox currently has two selectors (eg .nb-shim), so just use the first one.
+          expect($($(Nerdbox.options.contentSelector)[0])).toHaveText('Nerdbox Content');
           $('#fragment').remove();
         });
       });
