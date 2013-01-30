@@ -55,13 +55,12 @@
 }
 
 #nerdbox .nb-wrapper .nb-close {
-  background-color: #FFF;
   -webkit-border-radius: 0 0 0 5px;
   -moz-border-radius: 0 0 0 5px;
   border-radius: 0 0 0 5px;
   position: absolute;
   top: 0;
-  right: 5px;
+  right: 1px;
   height: 20px;
   width: 20px;
   text-decoration: none;
