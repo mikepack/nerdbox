@@ -28,8 +28,8 @@ Nerdbox.options = {
 <div id="nerdbox" style="display: none;"> \
   <div class="nb-overlay"></div> \
   <div class="nb-wrapper"> \
-    <div class="nb-shim"></div> \
     <div class="nb-content"></div> \
+    <div class="nb-shim"></div> \
     <a href="#" class="nb-close" title="close"></a> \
   </div> \
 </div>',
