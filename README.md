@@ -343,9 +343,7 @@ Nerdbox functions properly in IE8+. The default loader uses CSS animations, whic
 
 ## Credits
 
-![Factory Code Labs](http://i.imgur.com/yV4u1.png)
-
-Nerdbox is maintained by [Factory Code Labs](http://www.factorycodelabs.com). Huge thanks to [@ajaswa](https://github.com/ajaswa/) for the CSS.
+Huge thanks to [@ajaswa](https://github.com/ajaswa/) for the CSS.
 
 ## License
 
