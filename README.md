@@ -310,19 +310,19 @@ $('.nerdbox').nerdbox({fadeDuration: 500});
 
 ## Running the Specs
 
-You can run the specs two ways, with rake or in your browser.
+You can run the specs two ways, with testem or in your browser.
 
-### Rake
+### Node
 
-Use this if you have a configured Ruby environment. This is how specs run on CI.
+Use this if you have a configured node environment.
 
 1. Clone the repository.
-2. Run `bundle`.
-3. Run `rake`.
+2. Run `npm install -g testem`.
+3. Run `testem`.
 
 ### Browser
 
-Use this if you don't want the dependency on Ruby.
+Use this if you don't want the dependency on node or are debugging.
 
 1. Clone the repository.
 2. Open `spec/spec_runner.html` in your browser.
