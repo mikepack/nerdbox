@@ -81,15 +81,11 @@
   line-height: 20px;
 }
 
-#nerdbox .nb-shim {
-  visibility: hidden;
-}
-
 #nerdbox .nb-content {
   background: #FFF;
   height: 100%;
   width: 100%;
-  position: absolute;
+  /*position: absolute;*/
   top: 0;
   left: 0;
   overflow: auto;

@@ -22,14 +22,13 @@ Nerdbox.options = {
   imageExts       : [ 'png', 'jpg', 'jpeg', 'gif' ],
   nerdboxSelector : '#nerdbox',
   overlaySelector : '.nb-overlay',
-  contentSelector : '.nb-content, .nb-shim',
+  contentSelector : '.nb-content',
   closeSelector   : '.nb-close',
   container       : '\
 <div id="nerdbox" style="display: none;"> \
   <div class="nb-overlay"></div> \
   <div class="nb-wrapper"> \
     <div class="nb-content"></div> \
-    <div class="nb-shim"></div> \
     <a href="#" class="nb-close" title="close"></a> \
   </div> \
 </div>',
