@@ -47,7 +47,7 @@ Nerdbox.open = function(contentRef) {
 };
 
 Nerdbox.close = function() {
-  Nerdbox._fadeOut(function() { jQuery(document).trigger('nerdbox.closed'); });
+  Nerdbox._currentNerdbox().close();
   return false;
 };
 
@@ -76,8 +76,14 @@ Nerdbox._fadeIn = function(afterFadeIn) {
   jQuery(Nerdbox._currentNerdbox().options.nerdboxSelector).fadeIn(Nerdbox._currentNerdbox().options.fadeDuration, afterFadeIn);
 };
 
-Nerdbox._fadeOut = function(afterFadeOut) {
-  jQuery(Nerdbox._currentNerdbox().options.nerdboxSelector).fadeOut(Nerdbox._currentNerdbox().options.fadeDuration, afterFadeOut);
+Nerdbox.prototype.close = function() {
+  var that = this,
+      afterFadeOut = function() {
+    jQuery(document).trigger('nerdbox.closed');
+    jQuery(that._contentSelector()).empty();
+  };
+
+  jQuery(this.options.nerdboxSelector).fadeOut(this.options.fadeDuration, afterFadeOut);
 };
 
 Nerdbox.prototype._openFromLink = function(event) {

@@ -274,6 +274,13 @@ describe('Nerdbox', function() {
       nerdbox = new Nerdbox();
     });
 
+    it('removes content from the lightbox', function() {
+      $('.nerdbox').click();
+      $(nerdbox.options.closeSelector).click();
+
+      expect($(nerdbox.options.contentSelector)).toBeEmpty();
+    });
+
     describe('clicking the close link', function() {
       it('closes the lightbox', function() {
         $('.nerdbox').click();
