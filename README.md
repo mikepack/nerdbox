@@ -347,4 +347,4 @@ Huge thanks to [@ajaswa](https://github.com/ajaswa/) for the CSS.
 
 ## License
 
-Nerdbox is Copyright © 2012 Factory Code Labs. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
+Nerdbox is Copyright © 2012 Mike Pack. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
