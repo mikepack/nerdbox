@@ -1,0 +1,10 @@
+{
+  "framework": "jasmine",
+  "src_files": [
+    "src/nerdbox.js",
+    "spec/nerdbox/nerdbox_spec.js"
+  ],
+  "test_page": "spec/spec_runner.html",
+  "launch_in_dev": ["PhantomJS"],
+  "launch_in_ci": ["PhantomJS"]
+}
