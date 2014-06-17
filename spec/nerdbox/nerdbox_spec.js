@@ -149,6 +149,13 @@ describe('Nerdbox', function() {
 
       expect(callback).toHaveBeenCalled();
     });
+
+    it('allows overriding options in the constructor', function() {
+      new Nerdbox({container: '<div id="custom-container"></div>'});
+
+      expect($('#custom-container')).toExist();
+      $('#custom-container').remove();
+    });
   });
 
   describe('clicking Nerdbox links', function() {
