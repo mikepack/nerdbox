@@ -98,6 +98,16 @@ If you want to assign your own click handlers and open Nerdbox manually, you can
 
 Open the lightbox with the desired content. The content can be any of the values available as an href: images, elements by ID and ajax pages. You can also provide arbitrary content to display in the lightbox.
 
+Load elements with jQuery or raw elements:
+
+```javascript
+$el = $('#lightbox-contents');
+Nerdbox.open($el);
+
+el = document.getElementById('lightbox-contents');
+Nerdbox.open(el);
+```
+
 Load images:
 
 ```javascript
@@ -192,17 +202,16 @@ Here are the default options for Nerdbox:
   fadeDuration    : 200,
   imageExts       : [ 'png', 'jpg', 'jpeg', 'gif' ],
   nerdboxSelector : '#nerdbox',
-  overlaySelector : '.overlay',
-  contentSelector : '.content',
-  closeSelector   : '.close',
+  overlaySelector : '.nb-overlay',
+  contentSelector : '.nb-content, .nb-shim',
+  closeSelector   : '.nb-close',
   container       : '\
 <div id="nerdbox" style="display: none;"> \
-  <div class="overlay"></div> \
-  <div class="wrapper"> \
-    <div class="inner"> \
-      <div class="content"></div> \
-    </div> \
-    <a href="#" class="close">x</a> \
+  <div class="nb-overlay"></div> \
+  <div class="nb-wrapper"> \
+    <div class="nb-content"></div> \
+    <div class="nb-shim"></div> \
+    <a href="#" class="nb-close" title="close"></a> \
   </div> \
 </div>',
   loader          : '\
