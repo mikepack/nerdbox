@@ -22,7 +22,10 @@
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
+    ".travis.yml",
+    "bower.json",
+    "MIT_LICENSE",
+    "testem.json",
     "spec"
   ],
   "dependencies": {
