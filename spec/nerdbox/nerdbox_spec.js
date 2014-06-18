@@ -381,6 +381,18 @@ describe('Nerdbox', function() {
         expect($(Nerdbox.options.nerdboxSelector)).toBeVisible();
       });
 
+      describe('loading an element', function() {
+        it('loads an element into the lightbox', function() {
+          var $el = $('<div class="element">Nerdbox Content</div>');
+          $('body').append($el);
+
+          Nerdbox.open($el);
+
+          expect($(Nerdbox.options.contentSelector)).toHaveHtml('<div class="element">Nerdbox Content</div>');
+          $el.remove();
+        });
+      });
+
       describe('loading element content', function() {
         it('loads an elements content into the lightbox', function() {
           $('body').append($('<div id="fragment">Nerdbox Content</div>'));

@@ -130,8 +130,12 @@ Nerdbox.prototype._loadContent = function(href) {
   var imageTypesRegexp = new RegExp('\\.(' + this.options.imageExts.join('|') + ')', 'i'),
       urlRegex         = new RegExp('^[^ ]*$');
 
+  // Render an element
+  if( typeof href.appendTo == 'function' || typeof href.appendChild == 'function' ) {
+    this._loadElement(jQuery(href));
+
   // Render a div
-  if( href.match(/#/) ) {
+  } else if( href.match(/#/) ) {
     this._loadFragment(href);
 
   // Render an image
@@ -147,6 +151,10 @@ Nerdbox.prototype._loadContent = function(href) {
     this._setContent(href);
   }
 
+};
+
+Nerdbox.prototype._loadElement = function($el) {
+  this._setElement($el);
 };
 
 Nerdbox.prototype._loadFragment = function(fragment) {
@@ -171,6 +179,11 @@ Nerdbox.prototype._loadAjax = function(url) {
 
 Nerdbox.prototype._setContent = function(html) {
   jQuery(this._contentSelector()).html(html);
+  jQuery(document).trigger('nerdbox.loaded');
+};
+
+Nerdbox.prototype._setElement = function($el) {
+  jQuery(this._contentSelector()).empty().append($el);
   jQuery(document).trigger('nerdbox.loaded');
 };
 

@@ -335,6 +335,7 @@ Nerdbox functions properly in IE8+. The default loader uses CSS animations, whic
 
 - Improve algorithm to determine Nerdbox.open with text. Currently it only supports URLS without spaces.
 - Better testing around timing of hooks.
+- [Better overflow support](https://github.com/mikepack/nerdbox/pull/11)
 
 ## Known Issues
 
