@@ -399,6 +399,16 @@ describe('Nerdbox', function() {
           $el.remove();
         });
 
+        it('supports raw DOM elements', function() {
+          $('body').append('<div class="element">Nerdbox Content</div>');
+
+          el = document.getElementsByClassName('element')[0];
+          Nerdbox.open(el);
+
+          expect($(Nerdbox.options.contentSelector)).toHaveHtml('<div class="element">Nerdbox Content</div>');
+          el.parentNode.removeChild(el);
+        });
+
         it('does not remove the original element', function() {
           var $el = $('<div class="element">Nerdbox Content</div>');
           $('body').append($el);
