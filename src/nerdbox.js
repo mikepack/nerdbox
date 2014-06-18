@@ -185,7 +185,7 @@ Nerdbox.prototype._setContent = function(html) {
 };
 
 Nerdbox.prototype._setElement = function($el) {
-  jQuery(this._contentSelector()).empty().append($el);
+  jQuery(this._contentSelector()).empty().append($el.clone());
   jQuery(document).trigger('nerdbox.loaded');
 };
 

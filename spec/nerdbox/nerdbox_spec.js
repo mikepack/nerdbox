@@ -398,6 +398,17 @@ describe('Nerdbox', function() {
           expect($(Nerdbox.options.contentSelector)).toHaveHtml('<div class="element">Nerdbox Content</div>');
           $el.remove();
         });
+
+        it('does not remove the original element', function() {
+          var $el = $('<div class="element">Nerdbox Content</div>');
+          $('body').append($el);
+
+          Nerdbox.open($el);
+
+          expect($('body > .element').length).toEqual(1);
+          expect($('body .element').length).toEqual(3); // 2 would be expected, plus nb-shim
+          $el.remove();
+        });
       });
 
       describe('loading element content', function() {
