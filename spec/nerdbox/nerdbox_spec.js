@@ -381,6 +381,13 @@ describe('Nerdbox', function() {
         expect($(Nerdbox.options.nerdboxSelector)).toBeVisible();
       });
 
+      it('replaces an existing lightbox if called twice', function() {
+        Nerdbox.open('');
+        Nerdbox.open('');
+
+        expect($(Nerdbox.options.closeSelector).length).toEqual(1);
+      });
+
       describe('loading an element', function() {
         it('loads an element into the lightbox', function() {
           var $el = $('<div class="element">Nerdbox Content</div>');
