@@ -1,5 +1,5 @@
 /* Nerdbox
- * v0.2.2
+ * v0.3.0
  *
  * Nerdbox is a fully-tested, simple lightbox designed for programmers.
  */
