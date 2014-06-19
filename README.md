@@ -1,4 +1,6 @@
-# Nerdbox [![Build Status](https://secure.travis-ci.org/mikepack/nerdbox.png)](http://travis-ci.org/mikepack/nerdbox)
+# Nerdbox [![Build Status](https://secure.travis-ci.org/mikepack/nerdbox.png)](http://travis-ci.org/mikepack/nerdbox) [![Bountysource](https://www.bountysource.com/badge/issue?issue_id=2722695)](https://www.bountysource.com/issues/2722695-overflow-scrolling-without-a-shim?utm_source=2722695&utm_medium=shield&utm_campaign=ISSUE_BADGE)
+
+We currently have an open $100 bounty to [solve overflow scrolling](https://github.com/mikepack/nerdbox/issues/15)!
 
 ## The Programmers Lightbox
 
