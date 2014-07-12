@@ -385,14 +385,14 @@ describe('Nerdbox', function() {
 
       it('accepts options as the second argument', function() {
         Nerdbox.open('', {container: '<div id="optionsbox"></div>'});
-        expect($('#optionsbox').length).toEqual(1);
+        expect($('#optionsbox')).toExist()
       });
 
       it('replaces an existing lightbox if called twice', function() {
         Nerdbox.open('');
         Nerdbox.open('');
 
-        expect($(Nerdbox.options.closeSelector).length).toEqual(1);
+        expect($(Nerdbox.options.closeSelector)).toExist();
       });
 
       describe('loading an element', function() {
