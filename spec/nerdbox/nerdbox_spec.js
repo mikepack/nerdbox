@@ -78,11 +78,13 @@ describe('Nerdbox', function() {
     it('overrides default options for the instance', function() {
       var nerdbox = new Nerdbox('.mynerdbox', 'body', {
         fadeDuration: 888,
-        nerdboxSelector: '#differentbox'
+        nerdboxSelector: '#differentbox',
+        container: '<div id="differentbox"></div>'
       });
 
       expect(nerdbox.options.fadeDuration).toEqual(888);
       expect(nerdbox.options.nerdboxSelector).toEqual('#differentbox');
+      expect($('#differentbox')).toExist();
     });
 
     describe('options out of order', function() {
@@ -148,13 +150,6 @@ describe('Nerdbox', function() {
       new Nerdbox();
 
       expect(callback).toHaveBeenCalled();
-    });
-
-    it('allows overriding options in the constructor', function() {
-      new Nerdbox({container: '<div id="custom-container"></div>'});
-
-      expect($('#custom-container')).toExist();
-      $('#custom-container').remove();
     });
   });
 
@@ -386,6 +381,11 @@ describe('Nerdbox', function() {
       it('opens the lightbox', function() {
         Nerdbox.open('');
         expect($(Nerdbox.options.nerdboxSelector)).toBeVisible();
+      });
+
+      it('accepts options as the second argument', function() {
+        Nerdbox.open('', {container: '<div id="optionsbox"></div>'});
+        expect($('#optionsbox').length).toEqual(1);
       });
 
       it('replaces an existing lightbox if called twice', function() {

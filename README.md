@@ -134,6 +134,13 @@ Load arbitrary content:
 Nerdbox.open('Load me into the <span>lightbox</span>.');
 ```
 
+`Nerdbox.open` accepts options as a second argument:
+
+```javascript
+Nerdbox.open('myimage.png', {fadeDuration: 500});
+```
+
+
 ### Nerdbox.close
 
 Close the currently visible lightbox, if one exists.

@@ -41,8 +41,8 @@ Nerdbox.options = {
 </div>'
 };
 
-Nerdbox.open = function(contentRef) {
-  var nerdbox = new Nerdbox();
+Nerdbox.open = function(contentRef, options) {
+  var nerdbox = new Nerdbox(options);
   nerdbox._open(contentRef);
 };
 
