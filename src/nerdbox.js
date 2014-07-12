@@ -20,6 +20,7 @@ jQuery.fn.nerdbox = function(delegate, options) {
 Nerdbox.options = {
   fadeDuration    : 200,
   imageExts       : [ 'png', 'jpg', 'jpeg', 'gif' ],
+  classes         : undefined,
   nerdboxSelector : '#nerdbox',
   overlaySelector : '.nb-overlay',
   contentSelector : '.nb-content, .nb-shim',
@@ -107,7 +108,8 @@ Nerdbox.prototype._open = function(href) {
 Nerdbox.prototype._setup = function() {
   // Add HTML to DOM
   if( jQuery(this.options.nerdboxSelector).length === 0 ) {
-    jQuery('body').append(this.options.container);
+    jQuery(this.options.container).appendTo('body')
+                                  .addClass(this._classes());
   }
 
   // Bind click handlers
@@ -199,4 +201,10 @@ Nerdbox.prototype._contentSelector = function() {
 
 Nerdbox.prototype._closeSelector = function() {
   return this.options.nerdboxSelector + ' ' + this.options.closeSelector;
+};
+
+Nerdbox.prototype._classes = function() {
+  var classes = this.options.classes;
+
+  return Array.isArray(classes) ? classes.join(' ') : classes;
 };

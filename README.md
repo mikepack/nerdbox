@@ -210,6 +210,7 @@ Here are the default options for Nerdbox:
 {
   fadeDuration    : 200,
   imageExts       : [ 'png', 'jpg', 'jpeg', 'gif' ],
+  classes         : undefined,
   nerdboxSelector : '#nerdbox',
   overlaySelector : '.nb-overlay',
   contentSelector : '.nb-content, .nb-shim',
@@ -239,6 +240,17 @@ The speed at which the lightbox animates in and out of view.
 ### imageExts
 
 When displaying images, Nerdbox checks if its extension is amoung the specified `imageExts`. If you have a different image extension other than the defaults, add that extension to the list.
+
+### classes
+
+Additional classes to add to the container element, accessed via `nerdboxSelector`. This is a shortcut for replacing the entire `container` and gives an instance of Nerdbox the ability to have additional classes.
+
+Can be a space-delimited string or an array. These are equivalent:
+
+```javascript
+new Nerdbox({classes: 'nerd box'});
+new Nerdbox({classes: ['nerd', 'box']});
+```
 
 ### nerdboxSelector
 

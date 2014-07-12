@@ -78,13 +78,11 @@ describe('Nerdbox', function() {
     it('overrides default options for the instance', function() {
       var nerdbox = new Nerdbox('.mynerdbox', 'body', {
         fadeDuration: 888,
-        nerdboxSelector: '#differentbox',
-        container: '<div id="differentbox"></div>'
+        nerdboxSelector: '#differentbox'
       });
 
       expect(nerdbox.options.fadeDuration).toEqual(888);
       expect(nerdbox.options.nerdboxSelector).toEqual('#differentbox');
-      expect($('#differentbox')).toExist();
     });
 
     describe('options out of order', function() {
@@ -102,6 +100,39 @@ describe('Nerdbox', function() {
         expect(nerdbox.selector).toEqual('.nerdbox');
         expect(nerdbox.delegate).toEqual(undefined);
         expect(nerdbox.options.fadeDuration).toEqual(999);
+      });
+    });
+  });
+
+  // Testable options
+  describe('available options', function() {
+    describe('container', function() {
+      it('sets the containing element', function() {
+        Nerdbox.open('', {container: '<div id="differentbox"></div>'});
+        expect($('#differentbox')).toExist();
+      });
+    });
+
+    describe('classes', function() {
+      var classes = function() {
+        return ($('#nerdbox').attr('class') || '').split(' ');
+      }
+
+      it('adds classes to the container', function() {
+        Nerdbox.open('', {classes: 'differentbox'});
+        expect($('#differentbox')).toExist();
+      });
+
+      it('splits a string by spaces', function() {
+        Nerdbox.open('', {classes: 'different box'});
+        expect(classes().indexOf('different')).toBeGreaterThan(-1);
+        expect(classes().indexOf('box')).toBeGreaterThan(-1);
+      });
+
+      it('accepts an array', function() {
+        Nerdbox.open('', {classes: ['different', 'box']});
+        expect(classes().indexOf('different')).toBeGreaterThan(-1);
+        expect(classes().indexOf('box')).toBeGreaterThan(-1);
       });
     });
   });
