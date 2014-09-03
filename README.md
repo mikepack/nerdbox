@@ -19,8 +19,39 @@ Nerdbox is a fully-tested, simple lightbox designed for programmers.
 
 ## Installation
 
-1. Copy `nerdbox.js` and `nerdbox.css` (located in the src/ directory) into your project in the appropriate location. In a Rails app, this would be `vendor/assets/javascripts/nerdbox.js` and `vendor/assets/stylesheets/nerdbox.css`.
-2. Require `nerdbox.js` and `nerdbox.css` in your app. Normal script tags work. In Rails, you can add nerdbox to your manifest files to include them in the asset pipeline.
+**Acquire the source**
+
+Bower is the preferred technique:
+
+```bash
+bower install nerdbox
+```
+
+But you can also grab the source files from the `/src` directory of the repo.
+
+
+**Include JS and CSS**
+
+Normal tags work:
+
+```html
+<link rel="stylesheet" href="bower_components/src/nerdbox.css" type="text/css" media="screen" charset="utf-8">
+<script src="bower_components/src/nerdbox.js" type="text/javascript" charset="utf-8"></script>
+```
+
+Or, include the files in your manifests.
+
+JavaScript:
+
+```javascript
+//= require nerdbox/src/nerdbox
+```
+
+CSS:
+
+```sass
+@import "nerdbox/src/nerdbox";
+```
 
 ## Usage
 
