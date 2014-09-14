@@ -4,7 +4,7 @@ We currently have an open $100 bounty to [solve overflow scrolling](https://gith
 
 ## The Programmers Lightbox
 
-Nerdbox is a fully-tested, simple lightbox designed for programmers.
+Nerdbox is a fully-tested, responsive, simple lightbox designed for programmers.
 
 ![Nerdbox](http://i.imgur.com/ygoIP.png)
 
