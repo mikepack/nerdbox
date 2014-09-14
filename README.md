@@ -125,9 +125,9 @@ new Nerdbox({fadeDuration: 500});
 
 ## Programatically Controlling Nerdbox
 
-If you want to assign your own click handlers and open Nerdbox manually, you can use the following API:
+One of Nerdbox's goals is to be object oriented, which means you're encouraged to instantiate new instances of Nerdbox. If you want to control those instances differently, no problem. Say you want to assign your own click handlers and open Nerdbox manually, you can use the following API:
 
-### Nerdbox.open
+### Nerdbox#open
 
 Open the lightbox with the desired content. The content can be any of the values available as an href: images, elements by ID and ajax pages. You can also provide arbitrary content to display in the lightbox.
 
@@ -135,72 +135,78 @@ Load elements with jQuery or raw elements:
 
 ```javascript
 $el = $('#lightbox-contents');
-Nerdbox.open($el);
+new Nerdbox().open($el);
 
 el = document.getElementById('lightbox-contents');
-Nerdbox.open(el);
+new Nerdbox().open(el);
 ```
 
 Load images:
 
 ```javascript
-Nerdbox.open('myimage.png');
+new Nerdbox().open('myimage.png');
 ```
 
 Load element by ID:
 
 ```javascript
-Nerdbox.open('#someid');
+new Nerdbox().open('#someid');
 ```
 
 Load element by Ajax:
 
 ```javascript
-Nerdbox.open('page.html');
+new Nerdbox().open('page.html');
 ```
 
 Load arbitrary content:
 
 ```javascript
-Nerdbox.open('Load me into the <span>lightbox</span>.');
+new Nerdbox().open('Load me into the <span>lightbox</span>.');
 ```
 
-`Nerdbox.open` accepts options as a second argument:
+### Nerdbox#close
+
+Close the lightbox instance:
+
+```javascript
+var nerdbox = new Nerdbox();
+
+nerdbox.open('myimage.png');
+// Lightbox is visible.
+nerdbox.close();
+// Lightbox is hidden.
+```
+
+### Nerdbox.open and Nerdbox.close
+
+Since lightboxes are singleton views (it doesn't really make sense to have multiple lightboxes active at once), Nerdbox provides a singleton-style API. You're encouraged to instantiate your own Nerdbox objects instead, but if you don't have multiple types of lightboxes on a given page, this will provide a simple API for opening and closing the lightbox:
+
+```javascript
+Nerdbox.open('myimage.png');
+Nerdbox.close();
+```
+
+This is equivalent to the following code:
+
+```javascript
+var nerdbox = new Nerdbox();
+nerdbox.open('myimage.png');
+nerdbox.close();
+```
+
+If you need to customize the singleton lightbox, `Nerdbox.open` accepts options as a second argument:
 
 ```javascript
 Nerdbox.open('myimage.png', {fadeDuration: 500});
 ```
 
-
-### Nerdbox.close
-
-Close the currently visible lightbox, if one exists.
+`Nerdbox.close` will close lightboxes whether they are opened with the singleton method or an instance method:
 
 ```javascript
-Nerdbox.open('myimage.png');
-// Lightbox is visible.
-Nerdbox.close();
-// Lightbox is hidden.
-```
-
-It works for lightboxes shown with links, as well:
-
-```html
-<a href="myimage.png" class="nerdbox">click me</a>
-```
-
-```javascript
-new Nerdbox();
-```
-
-...someone clicks the link, showing the lightbox...
-
-```javascript
+new Nerdbox().open('myimage.png');
 Nerdbox.close();
 ```
-
-...lightbox is hidden.
-
 
 ## Globally Changing Options
 

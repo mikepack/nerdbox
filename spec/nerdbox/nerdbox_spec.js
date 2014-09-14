@@ -366,10 +366,6 @@ describe('Nerdbox', function() {
 
   describe('programatically controlling Nerdbox', function() {
     describe('.close', function() {
-      it('does not error out when no lightbox is present', function() {
-        expect(function() { Nerdbox.close(); }).not.toThrow();
-      });
-
       it('closes the currently open lightbox', function() {
         $('body').append($('<a href="support/formal_languages.png" class="nerdbox">Show Image</a>'));
 
@@ -377,6 +373,10 @@ describe('Nerdbox', function() {
         Nerdbox.close();
 
         expect($(Nerdbox.options.nerdboxSelector)).not.toBeVisible();
+      });
+
+      it('does not error out when no lightbox is present', function() {
+        expect(function() { Nerdbox.close(); }).not.toThrow();
       });
     });
 
@@ -489,6 +489,38 @@ describe('Nerdbox', function() {
         Nerdbox.open('spec/fixtures/invalid url.html');
 
         expect($(Nerdbox.options.contentSelector)).toHaveHtml('spec/fixtures/invalid url.html');
+      });
+    });
+
+    describe('#open', function() {
+      it('loads the content specified, just like Nerdbox.open', function() {
+        new Nerdbox().open('support/formal_languages.png');
+
+        expect($(Nerdbox.options.contentSelector)).toHaveHtml('<img src="support/formal_languages.png" />');
+      });
+
+      it('clobers any existing lightbox if one is opened', function() {
+        new Nerdbox().open('support/formal_languages.png');
+        new Nerdbox().open('here is some <span>text</span>');
+
+        expect($(Nerdbox.options.nerdboxSelector).length).toEqual(1);
+        expect($(Nerdbox.options.contentSelector)).not.toHaveHtml('<img src="support/formal_languages.png" />');
+        expect($(Nerdbox.options.contentSelector)).toHaveHtml('here is some <span>text</span>');
+      });
+    });
+
+    describe('#close', function() {
+      it('closes the currently open lightbox', function() {
+        var nerdbox = new Nerdbox();
+
+        nerdbox.open('support/formal_languages.png');
+        nerdbox.close();
+
+        expect($(Nerdbox.options.nerdboxSelector)).not.toBeVisible();
+      });
+
+      it('does not error out when the lightbox has not been opened', function() {
+        expect(function() { new Nerdbox().close(); }).not.toThrow();
       });
     });
   });

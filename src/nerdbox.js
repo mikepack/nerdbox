@@ -44,7 +44,7 @@ Nerdbox.options = {
 
 Nerdbox.open = function(contentRef, options) {
   var nerdbox = new Nerdbox(options);
-  nerdbox._open(contentRef);
+  nerdbox.open(contentRef);
 };
 
 Nerdbox.close = function() {
@@ -77,6 +77,15 @@ Nerdbox._fadeIn = function(afterFadeIn) {
   jQuery(Nerdbox._currentNerdbox().options.nerdboxSelector).fadeIn(Nerdbox._currentNerdbox().options.fadeDuration, afterFadeIn);
 };
 
+Nerdbox.prototype.open = function(href) {
+  jQuery(this._contentSelector()).html(this.options.loader);
+
+  Nerdbox._currentlyOpen = this;
+  Nerdbox._fadeIn(function() { jQuery(document).trigger('nerdbox.opened'); });
+
+  this._loadContent(href);
+};
+
 Nerdbox.prototype.close = function() {
   var that = this,
       afterFadeOut = function() {
@@ -91,18 +100,9 @@ Nerdbox.prototype._openFromLink = function(event) {
   // The target might be an element embedded in the link (eg image)
   var link = jQuery(event.target).closest(this.selector);
 
-  this._open(link.attr('href'));
+  this.open(link.attr('href'));
 
   return false;
-};
-
-Nerdbox.prototype._open = function(href) {
-  jQuery(this._contentSelector()).html(this.options.loader);
-
-  Nerdbox._currentlyOpen = this;
-  Nerdbox._fadeIn(function() { jQuery(document).trigger('nerdbox.opened'); });
-
-  this._loadContent(href);
 };
 
 Nerdbox.prototype._setup = function() {
