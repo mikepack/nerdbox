@@ -52,6 +52,14 @@ Nerdbox.close = function() {
   return false;
 };
 
+// If there is no current Nerdbox, we use a null object.
+Nerdbox._nullBox = { options: Nerdbox.options };
+
+Nerdbox._currentNerdbox = function() {
+  if( Nerdbox._currentlyOpen ) { return Nerdbox._currentlyOpen; }
+  else                         { return Nerdbox._nullBox; }
+};
+
 Nerdbox.prototype.init = function(selector, delegate, options) {
   // init('.nerdbox', {...})
   if(selector !== undefined && typeof delegate === 'object') { options = delegate; delegate = undefined; }
@@ -65,23 +73,11 @@ Nerdbox.prototype.init = function(selector, delegate, options) {
   this._setup();
 };
 
-Nerdbox._currentNerdbox = function() {
-  if( Nerdbox._currentlyOpen ) { return Nerdbox._currentlyOpen; }
-  else                         { return Nerdbox._nullBox; }
-};
-
-// If there is no current Nerdbox, we use a null object.
-Nerdbox._nullBox = { options: Nerdbox.options };
-
-Nerdbox._fadeIn = function(afterFadeIn) {
-  jQuery(Nerdbox._currentNerdbox().options.nerdboxSelector).fadeIn(Nerdbox._currentNerdbox().options.fadeDuration, afterFadeIn);
-};
-
 Nerdbox.prototype.open = function(href) {
   jQuery(this._contentSelector()).html(this.options.loader);
 
   Nerdbox._currentlyOpen = this;
-  Nerdbox._fadeIn(function() { jQuery(document).trigger('nerdbox.opened'); });
+  this._fadeIn(function() { jQuery(document).trigger('nerdbox.opened'); });
 
   this._loadContent(href);
 };
@@ -154,7 +150,6 @@ Nerdbox.prototype._loadContent = function(href) {
   } else {
     this._setContent(href);
   }
-
 };
 
 Nerdbox.prototype._loadElement = function($el) {
@@ -189,6 +184,10 @@ Nerdbox.prototype._setContent = function(html) {
 Nerdbox.prototype._setElement = function($el) {
   jQuery(this._contentSelector()).empty().append($el.clone());
   jQuery(document).trigger('nerdbox.loaded');
+};
+
+Nerdbox.prototype._fadeIn = function(afterFadeIn) {
+  jQuery(this.options.nerdboxSelector).fadeIn(this.options.fadeDuration, afterFadeIn);
 };
 
 Nerdbox.prototype._overlaySelector = function() {
