@@ -184,14 +184,14 @@ describe('Nerdbox', function() {
     it('pops open the lightbox', function() {
       $('body').append($('<a href="#" class="nerdbox">Open Nerdbox</a>'));
 
-      var nerdbox = new Nerdbox();
+      new Nerdbox();
       $('.nerdbox').click();
 
       expect($(Nerdbox.options.nerdboxSelector)).toBeVisible();
     });
 
     it('does not delegate events by default', function() {
-      var nerdbox = new Nerdbox();
+      new Nerdbox();
 
       $('body').append($('<a href="#" class="nerdbox">Open Nerdbox</a>'));
       $('.nerdbox').click();
@@ -200,7 +200,7 @@ describe('Nerdbox', function() {
     });
 
     it('can pops open the lightbox using delegation', function() {
-      var nerdbox = new Nerdbox('.nerdbox', 'body');
+      new Nerdbox('.nerdbox', 'body');
 
       $('body').append($('<a href="#" class="nerdbox">Open Nerdbox</a>'));
       $('.nerdbox').click();
@@ -211,7 +211,7 @@ describe('Nerdbox', function() {
     it('shows the loading animation', function() {
       $('body').append($('<a href="#" class="nerdbox">Open Nerdbox</a>'));
 
-      var nerdbox = new Nerdbox({
+      new Nerdbox({
         loader: '<div id="loader"></div>'
       });
       $('.nerdbox').click();
@@ -231,7 +231,7 @@ describe('Nerdbox', function() {
       it('loads an elements content if the href refers to a fragment', function() {
         $('body').append($('<a href="#fragment" class="nerdbox">Show Content</a>'));
 
-        var nerdbox = new Nerdbox();
+        new Nerdbox();
         $('.nerdbox').click();
 
         // [0] here refers to the first element of the ones that have been selected.
@@ -242,7 +242,7 @@ describe('Nerdbox', function() {
       it('can handle fragments as a substring', function() {
         $('body').append($('<a href="ignored#fragment" class="nerdbox">Show Content</a>'));
 
-        var nerdbox = new Nerdbox();
+        new Nerdbox();
         $('.nerdbox').click();
 
         // [0] here refers to the first element of the ones that have been selected.
@@ -255,7 +255,7 @@ describe('Nerdbox', function() {
       it('loads the image if href refers to one of the extensions specified in the config', function() {
         $('body').append($('<a href="support/formal_languages.png" class="nerdbox">Show Image</a>'));
 
-        var nerdbox = new Nerdbox();
+        new Nerdbox();
         $('.nerdbox').click();
 
         expect($(Nerdbox.options.contentSelector)).toHaveHtml('<img src="support/formal_languages.png" />');
@@ -265,7 +265,7 @@ describe('Nerdbox', function() {
         $('body').append($('<a href="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://localhost/" class="nerdbox">Show Image</a>'));
 
         // Using the domain as an "extension" is a hack. Consider adding a regex option to the configuration.
-        var nerdbox = new Nerdbox({imageExts: ['googleapis']});
+        new Nerdbox({imageExts: ['googleapis']});
         $('.nerdbox').click();
 
         expect($(Nerdbox.options.contentSelector)).toHaveHtml('<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http://localhost/" />');
@@ -280,7 +280,7 @@ describe('Nerdbox', function() {
       it('requests a page and populates the lightbox with its content', function() {
         $('body').append($('<a href="spec/fixtures/ajax.html" class="nerdbox">Show Ajax Content</a>'));
 
-        var nerdbox = new Nerdbox();
+        new Nerdbox();
         $('.nerdbox').click();
 
         var request = mostRecentAjaxRequest();
