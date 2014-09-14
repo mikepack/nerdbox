@@ -10,12 +10,12 @@ Nerdbox is a fully-tested, simple lightbox designed for programmers.
 
 ## Why
 
+- Most center the lightbox using JavaScript. Nerdbox uses CSS.
+- Most size the lightbox using JavaScript. Nerdbox uses CSS.
 - Too many lightboxes hide their internals within a closure. If you need to accomplish something it wasn't designed to do, you end up with really strange, buggy and dependent code. This makes upgrading hard and is generally ugly.
 - Most lightbox libraries are strictly jQuery plugins, degrading the API. jQuery's a secondary concern in Nerdbox.
 - Most neglect testing. Nerdbox is test driven.
 - Most use images for the close link and content loading. Nerdbox does not rely on any images.
-- Most center the lightbox using JavaScript. Nerdbox uses CSS.
-- Most size the lightbox using JavaScript. Nerdbox uses CSS.
 
 ## Installation
 
