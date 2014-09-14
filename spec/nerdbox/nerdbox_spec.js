@@ -174,14 +174,6 @@ describe('Nerdbox', function() {
       expect($('#myprog')).toExist();
       $('#myprog').remove();
     });
-
-    it('triggers the nerdbox.initialized event', function() {
-      var callback = jasmine.createSpy('nerdbox.initialized callback');
-      $(document).on('nerdbox.initialized', callback);
-      new Nerdbox();
-
-      expect(callback).toHaveBeenCalled();
-    });
   });
 
   describe('clicking Nerdbox links', function() {
@@ -386,16 +378,6 @@ describe('Nerdbox', function() {
 
         expect($(Nerdbox.options.nerdboxSelector)).not.toBeVisible();
       });
-
-      it('triggers the nerdbox.closed event', function() {
-        var callback = jasmine.createSpy('nerdbox.closed callback');
-        $(document).bind('nerdbox.closed', callback);
-
-        Nerdbox.open('support/formal_languages.png');
-        Nerdbox.close();
-
-        expect(callback).toHaveBeenCalled();
-      });
     });
 
     describe('.open', function() {
@@ -503,22 +485,55 @@ describe('Nerdbox', function() {
         });
       });
 
-      it('triggers the nerdbox.loaded and nerdbox.opened events', function() {
-        var loaded = jasmine.createSpy('nerdbox.loaded callback');
-        var opened = jasmine.createSpy('nerdbox.opened callback');
-        $(document).bind('nerdbox.loaded', loaded);
-        $(document).bind('nerdbox.opened', opened);
-
-        Nerdbox.open('support/formal_languages.png');
-
-        expect(loaded).toHaveBeenCalled();
-        expect(opened).toHaveBeenCalled();
-      });
-
       it('cannot handle URLs with spaces (used to determine plain text)', function() {
         Nerdbox.open('spec/fixtures/invalid url.html');
 
         expect($(Nerdbox.options.contentSelector)).toHaveHtml('spec/fixtures/invalid url.html');
+      });
+    });
+  });
+
+  describe('listening for lifecycle events', function() {
+    describe('nerdbox.initialized', function() {
+      it('is triggered when a new object gets initialized', function() {
+        var callback = jasmine.createSpy('nerdbox.initialized callback');
+        $(document).on('nerdbox.initialized', callback);
+        new Nerdbox();
+
+        expect(callback).toHaveBeenCalled();
+      });
+    });
+
+    describe('nerdbox.opened', function() {
+      it('is triggered when a lightbox is opened', function() {
+        $(document).bind('nerdbox.opened', function() {
+          expect($(Nerdbox.options.contentSelector)).toHaveHtml(Nerdbox.options.loader);
+          expect($(Nerdbox.options.nerdboxSelector)).toBeVisible();
+        });
+
+        Nerdbox.open('support/formal_languages.png');
+      });
+    });
+
+    describe('nerdbox.loaded', function() {
+      it('is triggered the lightbox content has been added to the DOM', function() {
+        $(document).bind('nerdbox.loaded', function() {
+          expect($(Nerdbox.options.contentSelector)).toHaveHtml('<img src="support/formal_languages.png" />');
+        });
+
+        Nerdbox.open('support/formal_languages.png');
+      });
+    });
+
+    describe('nerdbox.closed', function() {
+      it('triggers the nerdbox.closed event', function() {
+        var callback = jasmine.createSpy('nerdbox.closed callback');
+        $(document).bind('nerdbox.closed', callback);
+
+        Nerdbox.open('support/formal_languages.png');
+        Nerdbox.close();
+
+        expect(callback).toHaveBeenCalled();
       });
     });
   });
