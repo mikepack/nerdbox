@@ -207,9 +207,9 @@ Nerdbox.prototype._fadeOut = function(afterFadeOut) {
 };
 
 Nerdbox.prototype._trigger = function(event) {
-  jQuery(this).trigger(event);
-  jQuery(this).trigger('nerdbox.' + event);
-  jQuery(document).trigger('nerdbox.' + event);
+  jQuery(this).trigger(event, this);
+  jQuery(this).trigger('nerdbox.' + event, this);
+  jQuery(document).trigger('nerdbox.' + event, this);
 };
 
 Nerdbox.prototype._overlaySelector = function() {

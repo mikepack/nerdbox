@@ -315,12 +315,12 @@ The HTML used while Nerdbox is loading content into the lightbox.
 
 ## Hooks
 
-Nerdbox provides a number of hooks for you to use if you want to add some lifecycle functionality.
+Nerdbox provides a number of hooks for you to use if you want to add some lifecycle functionality. Notice that the instance of Nerdbox that triggered the event gets passed as an argument to your callback:
 
 ```javascript
 var nerdbox = new Nerdbox();
 
-nerdbox.on('opened', function() {
+nerdbox.on('opened', function(e, nerdbox) {
   // Link clicked and lightbox opened
 });
 ```

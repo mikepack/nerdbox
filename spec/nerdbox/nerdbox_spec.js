@@ -589,6 +589,21 @@ describe('Nerdbox', function() {
       });
     });
 
+    describe('all events', function() {
+      it('passes the instance as an argument to the callback', function() {
+        var nerdbox = new Nerdbox(),
+            instance = null,
+            callback = function(e, nerdbox) {
+              instance = nerdbox;
+            };
+
+        nerdbox.on('opened', callback);
+        nerdbox.open('');
+
+        expect(instance).toEqual(nerdbox);
+      });
+    });
+
     describe('nerdbox.initialized', function() {
       it('is triggered when a new object gets initialized', function() {
         var callback = jasmine.createSpy('nerdbox.initialized callback');
