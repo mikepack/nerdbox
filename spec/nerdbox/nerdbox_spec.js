@@ -541,10 +541,59 @@ describe('Nerdbox', function() {
   });
 
   describe('listening for lifecycle events', function() {
+    describe('Nerdbox.on', function() {
+      it('listens for events fired on any instance', function() {
+        var callback = jasmine.createSpy('nerdbox.initialized callback');
+        Nerdbox.on('nerdbox.initialized', callback);
+
+        new Nerdbox();
+
+        expect(callback).toHaveBeenCalled();
+      });
+    });
+
+    describe('Nerdbox#on', function() {
+      it('listens for events fired on that instance', function() {
+        var callback = jasmine.createSpy('nerdbox.opened callback'),
+            nerdbox = new Nerdbox();
+
+        nerdbox.on('nerdbox.opened', callback);
+        nerdbox.open('');
+
+        expect(callback).toHaveBeenCalled();
+      });
+
+      it('does not listen on any other instance', function() {
+        var callback1 = jasmine.createSpy('nerdbox.opened callback 1'),
+            callback2 = jasmine.createSpy('nerdbox.opened callback 2'),
+            nerdbox1 = new Nerdbox(),
+            nerdbox2 = new Nerdbox();
+
+        nerdbox1.on('nerdbox.opened', callback1);
+        nerdbox2.on('nerdbox.opened', callback2);
+
+        nerdbox1.open('');
+
+        expect(callback1).toHaveBeenCalled();
+        expect(callback2).not.toHaveBeenCalled();
+      });
+
+      it('allows the nerdbox namespace to be removed from the event', function() {
+        var callback = jasmine.createSpy('opened callback'),
+            nerdbox = new Nerdbox();
+
+        nerdbox.on('opened', callback);
+        nerdbox.open('');
+
+        expect(callback).toHaveBeenCalled();
+      });
+    });
+
     describe('nerdbox.initialized', function() {
       it('is triggered when a new object gets initialized', function() {
         var callback = jasmine.createSpy('nerdbox.initialized callback');
-        $(document).on('nerdbox.initialized', callback);
+        Nerdbox.on('nerdbox.initialized', callback);
+
         new Nerdbox();
 
         expect(callback).toHaveBeenCalled();
@@ -553,7 +602,7 @@ describe('Nerdbox', function() {
 
     describe('nerdbox.opened', function() {
       it('is triggered when a lightbox is opened', function() {
-        $(document).bind('nerdbox.opened', function() {
+        Nerdbox.on('nerdbox.opened', function() {
           expect($(Nerdbox.options.contentSelector)).toHaveHtml(Nerdbox.options.loader);
           expect($(Nerdbox.options.nerdboxSelector)).toBeVisible();
         });
@@ -564,7 +613,7 @@ describe('Nerdbox', function() {
 
     describe('nerdbox.loaded', function() {
       it('is triggered the lightbox content has been added to the DOM', function() {
-        $(document).bind('nerdbox.loaded', function() {
+        Nerdbox.on('nerdbox.loaded', function() {
           expect($(Nerdbox.options.contentSelector)).toHaveHtml('<img src="support/formal_languages.png" />');
         });
 
@@ -575,7 +624,7 @@ describe('Nerdbox', function() {
     describe('nerdbox.closed', function() {
       it('triggers the nerdbox.closed event', function() {
         var callback = jasmine.createSpy('nerdbox.closed callback');
-        $(document).bind('nerdbox.closed', callback);
+        Nerdbox.on('nerdbox.closed', callback);
 
         Nerdbox.open('support/formal_languages.png');
         Nerdbox.close();

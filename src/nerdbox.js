@@ -52,6 +52,10 @@ Nerdbox.close = function() {
   return false;
 };
 
+Nerdbox.on = function(event, callback) {
+  jQuery(document).on(event, callback);
+};
+
 // If there is no current Nerdbox, we use a null object.
 Nerdbox._nullBox = { options: Nerdbox.options };
 
@@ -74,11 +78,13 @@ Nerdbox.prototype.init = function(selector, delegate, options) {
 };
 
 Nerdbox.prototype.open = function(href) {
+  var that = this;
+
   jQuery(this.options.nerdboxSelector).addClass('loading')
   jQuery(this._contentSelector()).html(this.options.loader);
 
   Nerdbox._currentlyOpen = this;
-  this._fadeIn(function() { jQuery(document).trigger('nerdbox.opened'); });
+  this._fadeIn(function() { that._trigger('opened'); });
 
   this._loadContent(href);
 };
@@ -86,11 +92,15 @@ Nerdbox.prototype.open = function(href) {
 Nerdbox.prototype.close = function() {
   var that = this,
       afterFadeOut = function() {
-        jQuery(document).trigger('nerdbox.closed');
+        that._trigger('closed');
         jQuery(that._contentSelector()).empty();
       };
 
   this._fadeOut(afterFadeOut);
+};
+
+Nerdbox.prototype.on = function(event, callback) {
+  jQuery(this).on(event, callback);
 };
 
 Nerdbox.prototype._openFromLink = function(event) {
@@ -124,7 +134,7 @@ Nerdbox.prototype._setup = function() {
     if( event.keyCode == 27 ) { Nerdbox.close(); }
   });
 
-  jQuery(document).trigger('nerdbox.initialized');
+  this._trigger('initialized');
 };
 
 Nerdbox.prototype._loadContent = function(href) {
@@ -180,12 +190,12 @@ Nerdbox.prototype._loadAjax = function(url) {
 Nerdbox.prototype._setContent = function(html) {
   jQuery(this._contentSelector()).html(html);
   jQuery(this.options.nerdboxSelector).removeClass('loading')
-  jQuery(document).trigger('nerdbox.loaded');
+  this._trigger('loaded');
 };
 
 Nerdbox.prototype._setElement = function($el) {
   jQuery(this._contentSelector()).empty().append($el.clone());
-  jQuery(document).trigger('nerdbox.loaded');
+  this._trigger('loaded');
 };
 
 Nerdbox.prototype._fadeIn = function(afterFadeIn) {
@@ -194,6 +204,12 @@ Nerdbox.prototype._fadeIn = function(afterFadeIn) {
 
 Nerdbox.prototype._fadeOut = function(afterFadeOut) {
   jQuery(this.options.nerdboxSelector).fadeOut(this.options.fadeDuration, afterFadeOut);
+};
+
+Nerdbox.prototype._trigger = function(event) {
+  jQuery(this).trigger(event);
+  jQuery(this).trigger('nerdbox.' + event);
+  jQuery(document).trigger('nerdbox.' + event);
 };
 
 Nerdbox.prototype._overlaySelector = function() {

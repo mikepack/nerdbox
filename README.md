@@ -315,31 +315,53 @@ The HTML used while Nerdbox is loading content into the lightbox.
 
 ## Hooks
 
-Nerdbox provides a number of hooks for you to use if you need to add some additional functionality.
-
-From within Nerdbox, all events are triggered on the `document`:
+Nerdbox provides a number of hooks for you to use if you want to add some lifecycle functionality.
 
 ```javascript
-$(document).trigger('nerdbox.<event name>');
+var nerdbox = new Nerdbox();
+
+nerdbox.on('opened', function() {
+  // Link clicked and lightbox opened
+});
 ```
 
-So you'll need to assign handlers like so:
+Events are also triggered with the `nerdbox` namespace:
 
 ```javascript
-$(document).on('nerdbox.<event name>')
+nerdbox.on('nerdbox.opened', function() {});
+```
+
+You can listen globally for events that are happening on all Nerdbox instances:
+
+```javascript
+Nerdbox.on('nerdbox.initialized', function() {});
+```
+
+And for convenience, events are also triggered on the document:
+
+```javascript
+$(document).on('nerdbox.initialized', function() {});
+```
+
+Note, events that are listened to globally with `Nerdbox.on` or `$(document).on` must have the `nerdbox` namespace. To prevent conflicts with other global events, the following won't work:
+
+```javascript
+Nerdbox.on('opened', function() {
+  // Won't execute.
+});
 ```
 
 ### nerdbox.initialized
 
-Called after click handles have been assigned to the links.
-
-### nerdbox.loaded
-
-Called after the content has been loaded into the lightbox.
+Called after click handlers have been assigned to the links.
 
 ### nerdbox.opened
 
 Called after the lightbox is fully visible.
+
+### nerdbox.loaded
+
+Called after the content has been loaded into the lightbox.
 
 ### nerdbox.closed
 
