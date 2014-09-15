@@ -219,6 +219,21 @@ describe('Nerdbox', function() {
       expect($('#loader')).toBeVisible();
     });
 
+    it('adds a loading class while content is loading', function() {
+      jasmine.Ajax.useMock();
+      $('body').append($('<a href="spec/fixtures/ajax.html" class="nerdbox">Load Content</a>'));
+
+      new Nerdbox();
+      $('.nerdbox').click();
+
+      expect($(Nerdbox.options.nerdboxSelector)).toHaveClass('loading');
+
+      var request = mostRecentAjaxRequest();
+      request.response(MockResponses.ajaxContent.success);
+
+      expect($(Nerdbox.options.nerdboxSelector)).not.toHaveClass('loading');
+    });
+
     describe('loading element content', function () {
       beforeEach(function() {
         $('body').append($('<div id="fragment">Nerdbox Content</div>'));

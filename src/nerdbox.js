@@ -74,6 +74,7 @@ Nerdbox.prototype.init = function(selector, delegate, options) {
 };
 
 Nerdbox.prototype.open = function(href) {
+  jQuery(this.options.nerdboxSelector).addClass('loading')
   jQuery(this._contentSelector()).html(this.options.loader);
 
   Nerdbox._currentlyOpen = this;
@@ -178,6 +179,7 @@ Nerdbox.prototype._loadAjax = function(url) {
 
 Nerdbox.prototype._setContent = function(html) {
   jQuery(this._contentSelector()).html(html);
+  jQuery(this.options.nerdboxSelector).removeClass('loading')
   jQuery(document).trigger('nerdbox.loaded');
 };
 
