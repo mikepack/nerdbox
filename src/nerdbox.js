@@ -48,7 +48,9 @@ Nerdbox.open = function(contentRef, options) {
 };
 
 Nerdbox.close = function() {
-  Nerdbox._currentNerdbox().close();
+  if(!Nerdbox._currentlyOpen) { return }
+
+  Nerdbox._currentlyOpen.close();
   return false;
 };
 
@@ -56,12 +58,10 @@ Nerdbox.on = function(event, callback) {
   jQuery(document).on(event, callback);
 };
 
-// If there is no current Nerdbox, we use a null object.
-Nerdbox._nullBox = { options: Nerdbox.options };
-
-Nerdbox._currentNerdbox = function() {
-  if( Nerdbox._currentlyOpen ) { return Nerdbox._currentlyOpen; }
-  else                         { return Nerdbox._nullBox; }
+Nerdbox._bootstrap = function() {
+  Nerdbox.on('nerdbox.opened', function(e, nerdbox) {
+    Nerdbox._currentlyOpen = nerdbox;
+  });
 };
 
 Nerdbox.prototype.init = function(selector, delegate, options) {
@@ -83,7 +83,6 @@ Nerdbox.prototype.open = function(href) {
   jQuery(this.options.nerdboxSelector).addClass('loading')
   jQuery(this._contentSelector()).html(this.options.loader);
 
-  Nerdbox._currentlyOpen = this;
   this._fadeIn(function() { that._trigger('opened'); });
 
   this._loadContent(href);
@@ -229,3 +228,5 @@ Nerdbox.prototype._classes = function() {
 
   return Array.isArray(classes) ? classes.join(' ') : classes;
 };
+
+Nerdbox._bootstrap();
