@@ -2,31 +2,31 @@
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 99999;
   height: 100%;
   width: 100%;
   text-align: center;
-  z-index: 99999;
 }
 
 /* This is to force inline vertical alignment of .wrapper */
 #nerdbox:before { 
-  content: ' ';
+  position: relative;
   display: inline-block;
   height: 100%;
-  position: relative;
-  vertical-align: middle;
   width: 1px;
+  content: ' ';
+  vertical-align: middle;
 }
 
 #nerdbox .nb-overlay {
-  background-color: #000;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
-  height: 100%;
-  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  filter: alpha(opacity=20);
+  opacity: 0.2;
 }
 
 /* This element is positioned inline.
@@ -34,14 +34,14 @@
    parent and vertical-align on itself ( with #nerdbox:before as a 'sibling' )
 */
 #nerdbox .nb-wrapper {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: middle;
-  text-align: left;
   position: relative;
+  display: inline-block;
   max-width: 90%;
   max-height: 90%;
   margin-left: -1px;
+  overflow: hidden;
+  vertical-align: middle;
+  text-align: left;
   border: 3px solid rgba(0,0,0,0);
 
   -webkit-border-radius: 5px;
@@ -55,34 +55,33 @@
 }
 
 #nerdbox .nb-wrapper .nb-close {
-  -webkit-border-radius: 0 0 0 5px;
-  -moz-border-radius: 0 0 0 5px;
-  border-radius: 0 0 0 5px;
   position: absolute;
   top: 0;
   right: 1px;
+  z-index: 11;
   height: 20px;
   width: 20px;
-  text-decoration: none;
   text-align: center;
-  z-index: 11;
+  text-decoration: none;
+  -webkit-border-radius: 0 0 0 5px;
+  -moz-border-radius: 0 0 0 5px;
+  border-radius: 0 0 0 5px;
 }
 
 #nerdbox .nb-wrapper .nb-close:before {
+  position: relative;
   display: block;
+  z-index: 10;
+  height: 20px;
+  width: 20px;
   content: "\00D7";
   font-size: 20px;
+  line-height: 20px;
   font-weight: bold;
   color: #AAA;
-  position: relative;
-  z-index: 10;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
 }
 
 #nerdbox .nb-content {
-  background: #FFF;
   /* If the content doesn't need more, we use the size that the content will
      need.
   */
@@ -96,16 +95,14 @@
   */
   max-height: 90vh;
   max-width: 100vw;
-  top: 0;
-  left: 0;
   overflow: auto;
-  z-index: 10;
-  -webkit-border-radius:4px;
-  -moz-border-radius:4px;
-  border-radius:4px;
+  background: #FFF;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 
-/* this helps with position and spacing when loading a single image into content */
+/* This helps with position and spacing when loading a single image into content */
 #nerdbox .nb-content > img {
   display: block;
 }
@@ -117,38 +114,41 @@
 */
 
 #loader {
-  width: 170px;
   height: 35px;
+  width: 170px;
   padding: 10px;
 }
 
 #loader .circle {
-  background-color: #FFF;
   float: left;
   height: 32px;
-  margin-left: 17px;
   width: 32px;
-  -webkit-animation-name: fade_circle;
-  -webkit-border-radius: 21px;
-  -webkit-animation-duration: 1.65s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-direction: linear;
-  -moz-animation-name: fade_circle;
-  -moz-border-radius: 21px;
-  -moz-animation-duration: 1.65s;
-  -moz-animation-iteration-count: infinite;
-  -moz-animation-direction: linear;
+  margin-left: 17px;
+  background-color: #FFF;
   opacity: 0.3;
-  -o-animation-name: fade_circle;
+  -webkit-border-radius: 21px;
+  -moz-border-radius: 21px;
   border-radius: 21px;
-  -o-animation-duration: 1.65s;
-  -o-animation-iteration-count: infinite;
-  -o-animation-direction: linear;
+
+  -webkit-animation-name: fade_circle;
+  -moz-animation-name: fade_circle;
+  -o-animation-name: fade_circle;
   -ms-animation-name: fade_circle;
+
+  -webkit-animation-duration: 1.65s;
+  -moz-animation-duration: 1.65s;
+  -o-animation-duration: 1.65s;
   -ms-animation-duration: 1.65s;
+
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
   -ms-animation-iteration-count: infinite;
+
+  -webkit-animation-direction: linear;
+  -moz-animation-direction: linear;
+  -o-animation-direction: linear;
   -ms-animation-direction: linear;
-  opacity: 0.3
 }
 
 #loader .circle.one {
