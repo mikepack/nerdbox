@@ -1,6 +1,4 @@
-# Nerdbox [![Build Status](https://secure.travis-ci.org/mikepack/nerdbox.png)](http://travis-ci.org/mikepack/nerdbox) [![Bountysource](https://www.bountysource.com/badge/issue?issue_id=2722695)](https://www.bountysource.com/issues/2722695-overflow-scrolling-without-a-shim?utm_source=2722695&utm_medium=shield&utm_campaign=ISSUE_BADGE)
-
-We currently have an open $100 bounty to [solve overflow scrolling](https://github.com/mikepack/nerdbox/issues/15)!
+# Nerdbox [![Build Status](https://secure.travis-ci.org/mikepack/nerdbox.png)](http://travis-ci.org/mikepack/nerdbox)
 
 ## The Programmers Lightbox
 
@@ -418,17 +416,14 @@ Use this if you don't want the dependency on node or are debugging.
 
 ## Support
 
-Nerdbox functions properly in IE8+. The default loader uses CSS animations, which are not supported in IE8.
+Nerdbox functions properly in IE9+.
 
 ## Future Improvements
 
 - Improve algorithm to determine Nerdbox.open with text. Currently it only supports URLS without spaces.
-- Better testing around timing of hooks.
-- [Better overflow support](https://github.com/mikepack/nerdbox/pull/11)
 
 ## Known Issues
 
-- Nerdbox does not overflow vertically very well. Content that extends beyond the height of the lightbox will not scroll properly.
 - Nerdbox will load in URLs with image-like extensions when you may expect it to make an Ajax request. So, http://get.pngnow.com will be recognized as an image and loaded into an image tag.
 
 ## Credits
