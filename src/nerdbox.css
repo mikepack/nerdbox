@@ -81,15 +81,32 @@
   line-height: 20px;
 }
 
-#nerdbox .nb-shim {
-  visibility: hidden;
-}
-
 #nerdbox .nb-content {
   background: #FFF;
+  /*If the content doesn't need more, we use the size that the content will need.*/
   height: 100%;
   width: 100%;
-  position: absolute;
+  /*Else, the maximum height is 90 viewport height units (This equals to 90% of 
+    the window). Let me explain:
+  
+    As you said, overflow made it impossible for the browser to calculate the 
+    height contained inside the box, so it can't make the scrollbars appear. If 
+    you tried to give the nb-content a fixed length, like height:400px for example, 
+    it would work, but then there's no way to make it use all the space possible 
+    in the screen. With viewport units we can work around this limitation and still
+    make it use all the space possible, because we're positioning it relative to
+    the screen size rather than other HTML elements. More info about viewport units 
+    can be found here:
+        http://www.w3.org/TR/css3-values/#viewport-relative-lengths
+        http://css-tricks.com/viewport-sized-typography/
+
+    I tested it on Firefox 32, Chrome 37 and IE 11. It seems to be working fine.
+	
+    NOTE: I use 90vh height because using more will make the scrollbar 
+      hide behind the limit of the Nerdbox window. Try max-height: 91vh; 
+      and max-height: 100vh; to see what I'm talking about. */
+  max-height:90vh;
+  max-width:100vw;
   top: 0;
   left: 0;
   overflow: auto;

@@ -249,9 +249,7 @@ describe('Nerdbox', function() {
         new Nerdbox();
         $('.nerdbox').click();
 
-        // [0] here refers to the first element of the ones that have been selected.
-        // Nerdbox currently has two selectors (eg .nb-shim), so just use the first one.
-        expect($($(Nerdbox.options.contentSelector)[0])).toHaveText('Nerdbox Content');
+        expect($(Nerdbox.options.contentSelector)).toHaveText('Nerdbox Content');
       });
 
       it('can handle fragments as a substring', function() {
@@ -260,9 +258,7 @@ describe('Nerdbox', function() {
         new Nerdbox();
         $('.nerdbox').click();
 
-        // [0] here refers to the first element of the ones that have been selected.
-        // Nerdbox currently has two selectors (eg .nb-shim), so just use the first one.
-        expect($($(Nerdbox.options.contentSelector)[0])).toHaveText('Nerdbox Content');
+        expect($(Nerdbox.options.contentSelector)).toHaveText('Nerdbox Content');
       });
     });
 
@@ -451,7 +447,7 @@ describe('Nerdbox', function() {
           Nerdbox.open($el);
 
           expect($('body > .element').length).toEqual(1);
-          expect($('body .element').length).toEqual(3); // 2 would be expected, plus nb-shim
+          expect($('body .element').length).toEqual(2);
           $el.remove();
         });
       });
@@ -462,9 +458,7 @@ describe('Nerdbox', function() {
 
           Nerdbox.open('#fragment');
 
-          // [0] here refers to the first element of the ones that have been selected.
-          // Nerdbox currently has two selectors (eg .nb-shim), so just use the first one.
-          expect($($(Nerdbox.options.contentSelector)[0])).toHaveText('Nerdbox Content');
+          expect($(Nerdbox.options.contentSelector)).toHaveText('Nerdbox Content');
           $('#fragment').remove();
         });
       });
