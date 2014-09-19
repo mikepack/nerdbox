@@ -127,17 +127,7 @@ One of Nerdbox's goals is to be object oriented, which means you're encouraged t
 
 ### Nerdbox#open
 
-Open the lightbox with the desired content. The content can be any of the values available as an href: images, elements by ID and ajax pages. You can also provide arbitrary content to display in the lightbox.
-
-Load elements with jQuery or raw elements:
-
-```javascript
-$el = $('#lightbox-contents');
-new Nerdbox().open($el);
-
-el = document.getElementById('lightbox-contents');
-new Nerdbox().open(el);
-```
+Open the lightbox with the desired content. The content can be any of the values available as an href: images, elements by ID and ajax pages. In addition, you can also provide jQuery elements, raw elements, and arbitrary content to display in the lightbox.
 
 Load images:
 
@@ -155,6 +145,16 @@ Load element by Ajax:
 
 ```javascript
 new Nerdbox().open('page.html');
+```
+
+Load elements with jQuery or raw elements:
+
+```javascript
+$el = $('#lightbox-contents');
+new Nerdbox().open($el);
+
+el = document.getElementById('lightbox-contents');
+new Nerdbox().open(el);
 ```
 
 Load arbitrary content:
@@ -178,7 +178,7 @@ nerdbox.close();
 
 ### Nerdbox.open and Nerdbox.close
 
-Since lightboxes are singleton views (it doesn't really make sense to have multiple lightboxes active at once), Nerdbox provides a singleton-style API. You're encouraged to instantiate your own Nerdbox objects instead, but if you don't have multiple types of lightboxes on a given page, this will provide a simple API for opening and closing the lightbox:
+Since lightboxes are singleton views (Nerdbox doesn't currently support multiple lightboxes visible at once), Nerdbox provides a singleton-style API. You're encouraged to instantiate your own Nerdbox objects instead, but if you don't have multiple types of lightboxes on a given page, this will provide a simple API for opening and closing the lightbox:
 
 ```javascript
 Nerdbox.open('myimage.png');
@@ -248,14 +248,13 @@ Here are the default options for Nerdbox:
   classes         : undefined,
   nerdboxSelector : '#nerdbox',
   overlaySelector : '.nb-overlay',
-  contentSelector : '.nb-content, .nb-shim',
+  contentSelector : '.nb-content',
   closeSelector   : '.nb-close',
   container       : '\
 <div id="nerdbox" style="display: none;"> \
   <div class="nb-overlay"></div> \
   <div class="nb-wrapper"> \
     <div class="nb-content"></div> \
-    <div class="nb-shim"></div> \
     <a href="#" class="nb-close" title="close"></a> \
   </div> \
 </div>',
