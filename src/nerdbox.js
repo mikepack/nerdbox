@@ -79,7 +79,7 @@ Nerdbox.prototype.init = function(selector, delegate, options) {
 Nerdbox.prototype.open = function(href) {
   var that = this;
 
-  jQuery(this.options.nerdboxSelector).addClass('loading')
+  jQuery(this.options.nerdboxSelector).addClass('loading');
   jQuery(this._contentSelector()).html(this.options.loader);
 
   this._fadeIn(function() { that._trigger('opened'); });
