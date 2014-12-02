@@ -114,52 +114,37 @@ describe('Nerdbox', function() {
     });
 
     describe('classes', function() {
-      var classes = function() {
-        return ($('#nerdbox').attr('class') || '').split(' ');
-      }
-
       it('adds classes to the container', function() {
         Nerdbox.open('', {classes: 'differentbox'});
-        expect($('#differentbox')).toExist();
+        expect($('.differentbox')).toExist();
       });
 
       it('splits a string by spaces', function() {
         Nerdbox.open('', {classes: 'different box'});
-        expect(classes().indexOf('different')).toBeGreaterThan(-1);
-        expect(classes().indexOf('box')).toBeGreaterThan(-1);
+        expect($('#nerdbox').attr('class')).toMatch('different');
+        expect($('#nerdbox').attr('class')).toMatch('box');
       });
 
       it('accepts an array', function() {
         Nerdbox.open('', {classes: ['different', 'box']});
-        expect(classes().indexOf('different')).toBeGreaterThan(-1);
-        expect(classes().indexOf('box')).toBeGreaterThan(-1);
+        expect($('#nerdbox').attr('class')).toMatch('different');
+        expect($('#nerdbox').attr('class')).toMatch('box');
       });
 
-      it('has appropriate classes on the container when second instance is opened', function() {
-        Nerdbox.open('', {classes: 'winner chicken'});
-        Nerdbox.close();
-        Nerdbox.open('', {classes: 'dinner sandwich'});
-        var el = $(Nerdbox.options.nerdboxSelector);
-        expect(el.attr("class")).toMatch('dinner')
-        expect(el.attr("class")).toMatch('sandwich')
-        expect(el.attr("class")).not.toMatch('winner')
-        expect(el.attr("class")).not.toMatch('chicken')
-      });
+      it('can handle multiple nerdboxes on the same page', function() {
+        var nerdbox1 = new Nerdbox({classes: 'winner'}),
+            nerdbox2 = new Nerdbox({classes: 'dinner'});
 
-      it('has appropriate classes on the container when 1st instance is re-opened', function() {
-        var nerdbox1 = new Nerdbox({classes: 'winner chicken'});
-        var nerdbox2 = new Nerdbox({classes: 'dinner sandwich'});
-        var el = $(Nerdbox.options.nerdboxSelector);
-        nerdbox1.open('the menu');
-        nerdbox1.close()
-        nerdbox2.open('what is on')
-        nerdbox2.close()
-        nerdbox1.open('the menu');
+        nerdbox1.open('');
+        expect($('#nerdbox').attr('class')).toMatch('winner');
 
-        expect(el.attr("class")).toMatch('winner')
-        expect(el.attr("class")).toMatch('chicken')
-        expect(el.attr("class")).not.toMatch('dinner')
-        expect(el.attr("class")).not.toMatch('sandwich')
+        nerdbox2.open('');
+        expect($('#nerdbox').attr('class')).toMatch('dinner');
+        expect($('#nerdbox').attr('class')).not.toMatch('winner');
+
+        Nerdbox.open('');
+        expect($('#nerdbox').attr('class')).not.toMatch('dinner');
+        expect($('#nerdbox').attr('class')).not.toMatch('winner');
       });
     });
   });
